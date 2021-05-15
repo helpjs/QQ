@@ -4,14 +4,12 @@ import "./App.css";
 import { CustomThemeContext } from "./contexts/CustomThemeProvider";
 import ProtectedRoute from "./ProtectedRoute";
 
-import {
-	FormControlLabel,
-	Switch as SwitchUI,
-	makeStyles,
-} from "@material-ui/core";
+import { Switch as SwitchUI, makeStyles } from "@material-ui/core";
 
 import Brightness2Icon from "@material-ui/icons/Brightness2";
 import Brightness5Icon from "@material-ui/icons/Brightness5";
+
+import MainLayout from "./layouts/MainLayout";
 
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
@@ -21,7 +19,7 @@ const useStyles = makeStyles({
 	themeSwitch: {
 		display: "flex",
 		alignItems: "center",
-		top: 0,
+		bottom: 0,
 		right: 0,
 		position: "fixed",
 		padding: ".5rem",
@@ -50,7 +48,9 @@ function App() {
 
 			<Router>
 				<Switch>
-					<ProtectedRoute exact path="/" component={Home} />
+					<ProtectedRoute exact path="/" component={MainLayout}>
+						<Home />
+					</ProtectedRoute>
 					<Route exact path="/login" component={SignIn} />
 					<Route component={NotFound} />
 				</Switch>
